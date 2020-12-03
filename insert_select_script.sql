@@ -37,3 +37,19 @@ SELECT DISTINCT LanguageId, [Language]
 FROM FilmStaging
 SET IDENTITY_INSERT [Language] OFF;
 
+SET IDENTITY_INSERT Film ON;
+INSERT INTO Film(FilmId,FilmName,FilmSynopsis,FilmRunTimeMinutes,FilmReleaseDate,
+			FilmBudgetDollars,FilmBoxOfficeDollars,FilmOscarNominations,FilmOscarWins,
+			DirectorId, CertificateId,LanguageId,CountryId,StudioId)
+SELECT DISTINCT FilmId, [Name], FilmSynopsis, FilmRunTimeMinutes, FilmReleaseDate,FilmBudgetDollars,
+		FilmBoxOfficeDollars,FilmOscarNominations, FilmOscarWins, DirectorId, CertificateId,
+		LanguageId, CountryId, FilmStudioId
+FROM FilmStaging;
+SET IDENTITY_INSERT Film OFF;
+
+SET IDENTITY_INSERT [Cast] ON;
+INSERT INTO [Cast](CastId, CastCharacterName, ActorId, FilmId)
+SELECT DISTINCT CastId, CastCharacterName, ActorId, FilmId
+FROM FilmStaging
+SET IDENTITY_INSERT [Cast] OFF;
+

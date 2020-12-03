@@ -30,3 +30,10 @@ INSERT INTO Studio(StudioId, StudioName)
 SELECT DISTINCT FilmStudioId, StudioName
 FROM FilmStaging
 SET IDENTITY_INSERT Studio OFF;
+
+SET IDENTITY_INSERT [Language] ON;
+INSERT INTO [Language](LanguageId, [Language])
+SELECT DISTINCT LanguageId, [Language]
+FROM FilmStaging
+SET IDENTITY_INSERT [Language] OFF;
+

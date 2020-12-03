@@ -52,4 +52,3 @@ INSERT INTO [Cast](CastId, CastCharacterName, ActorId, FilmId)
 SELECT DISTINCT CastId, CastCharacterName, ActorId, FilmId
 FROM FilmStaging
 SET IDENTITY_INSERT [Cast] OFF;
-

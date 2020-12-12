@@ -14,6 +14,15 @@ El modelo presentado cumple con las formas normales del modelo relacional, como 
 * *Segunda Forma Normal*: Todos los atributos definidos, que no constituyen una llave primaria, dependen íntegramente de la clave primaria.
 * *Tercera Forma Normal*: Ningún atributo no primario depende de otro atributo no primario. En este caso, todos los atributos no primarios (que no forman parte de una llave primaria) dependen de la llave primaria correspondiente.
 
-2. 
+2. Para la creación de las tablas correspondientes al modelo presentado anteriormente se utilizó SQL Server como sistema de gestión de bases de datos (SGBD).
+
+* 2.1 Para la creación de las tablas se utilizó la sentencia:
+  
+  CREATE TABLE table_name
+  ( 
+     field_name data_type,
+     ...
+  )
+   
 
 

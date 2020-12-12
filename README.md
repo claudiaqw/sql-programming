@@ -25,7 +25,14 @@ El modelo presentado cumple con las formas normales del modelo relacional, como 
   )
    ~~~      
    * El diagrama fue creado utilizando las facilidades de Microsoft SQL Server Management Studio.   
-3. 
+   
+3. Después de creadas la base de datos y las tablas correspondientes, las tablas fueron pobladas con la sentencia **SELECT INSERT** como se muestra en el script entregado. 
+Antes y después de cada sentencia **SELECT INSERT** han sido incluidas las siguientes sentencias:
+~~~ 
+  SET IDENTITY_INSERT table_name ON;
+  INSERT INTO table_name ...
+  SET IDENTITY_INSERT table_name OFF;
+~~~
    
 
 

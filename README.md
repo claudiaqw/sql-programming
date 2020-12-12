@@ -29,11 +29,14 @@ El modelo presentado cumple con las formas normales del modelo relacional, como 
 3. Después de creadas la base de datos y las tablas correspondientes, las tablas fueron pobladas con la sentencia **SELECT INSERT** como se muestra en el script entregado. 
 Antes y después de cada sentencia **SELECT INSERT** han sido incluidas las siguientes sentencias:
 ~~~ 
-  SET IDENTITY_INSERT table_name ON;
+  SET IDENTITY_INSERT table_name ON
+  
   INSERT INTO table_name ...
-  SET IDENTITY_INSERT table_name OFF;
+  
+  SET IDENTITY_INSERT table_name OFF
 ~~~
-   
+   Para la población de las tablas fue necesario introducirlas pues las tablas fueron creadas especificando el atributo **IDENTITY** en las llaves primarias.
 
+4. 
 
 

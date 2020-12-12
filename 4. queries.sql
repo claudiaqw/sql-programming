@@ -1,10 +1,9 @@
 USE FilmStaging;
 
-
 --1. ¿Cuál es la sinopsis de la película ‘Star Wars: Episode III - Revenge of the Sith’? 
 -- Devuelve el resultado en mayúsculas.
 
-SELECT UPPER(CONVERT(VARCHAR(MAX), FilmSynopsis))
+SELECT UPPER(CONVERT(VARCHAR(MAX), FilmSynopsis)) AS StarWarsSynopsis
 FROM Film
 WHERE FilmName = 'Star Wars: Episode III - Revenge of the Sith'
 
@@ -21,25 +20,24 @@ WHERE FilmName LIKE '%Harry%'
 
 SELECT FilmId, FilmName, FilmReleaseDate
 FROM Film
-WHERE FilmReleaseDate <= '2020/01/01' AND FilmReleaseDate >= '2000/12/31' 
+WHERE FilmReleaseDate >= '2000/01/01' AND FilmReleaseDate <= '2000/12/31' 
 ORDER BY FilmName DESC
 
 
 -- 4. Obtén todos los actores y actrices que hayan interpretado un papel en una película que
 -- haya ganado más de 10 Oscar, así como el personaje que interpretaron en cada una de las películas
 
-SELECT A.ActorId, A.ActorName, C.CastCharacterName, F.FilmName, F.FilmOscarWins
+SELECT A.ActorId, A.ActorName, C.CastId, C.CastCharacterName
 FROM Actor A INNER JOIN [Cast] C ON A.ActorId = C.ActorId INNER JOIN Film F ON C.FilmId = F.FilmId
-WHERE F.FilmOscarWins >= 10
+WHERE F.FilmOscarWins > 10
 
 
 -- 5. ¿Cuál fue el presupuesto del estudio ‘Universal Pictures’ en el año 2007?
 
-SELECT F.StudioId, S.StudioName, SUM(F.FilmBudgetDollars) AS StudioBudgetDollars
+SELECT S.StudioName, SUM(F.FilmBudgetDollars) AS StudioBudgetDollars
 FROM  Film F INNER JOIN Studio S ON F.StudioId = S.StudioId 
 WHERE S.StudioName = 'Universal Pictures' AND YEAR(F.FilmReleaseDate) = 2007
 GROUP BY F.StudioId, S.StudioName
-
 
 -- 6. Calcula la media de duración de las películas dirigidas por ‘Steven Spielberg’.
 
@@ -59,7 +57,7 @@ HAVING COUNT(*) > 5
 
 -- 8. Obtén al director que haya dirigido la película nominada a los Oscar más veces.
 
-SELECT TOP 1 D.DirectorName, F.FilmName, F.FilmOscarNominations
+SELECT TOP 1 D.DirectorId, D.DirectorName
 FROM Film F INNER JOIN Director D ON F.DirectorId = D.DirectorId
 ORDER BY F.FilmOscarNominations DESC
 
@@ -68,8 +66,9 @@ ORDER BY F.FilmOscarNominations DESC
 -- Elimina del resultado todas aquellas que no tengan un certificado establecido.
 
 SELECT F.FilmId, F.FilmName, C.CertificateId
-FROM Film F LEFT JOIN [Certificate] C ON F.CertificateId = C.CertificateId
+FROM Film F INNER JOIN [Certificate] C ON F.CertificateId = C.CertificateId
 
+-- Otra vía
 SELECT F.FilmId, F.FilmName, C.CertificateId
 FROM Film F LEFT JOIN [Certificate] C ON F.CertificateId = C.CertificateId
 WHERE F.CertificateId IS NOT NULL
@@ -77,7 +76,8 @@ WHERE F.CertificateId IS NOT NULL
 -- 10. Calcula la diferencia de presupuesto entre los estudios ‘20th Century Fox’ y
 --‘Dreamworks’.
 
-SELECT (SELECT SUM(F.FilmBudgetDollars) AS StudioBudgetDollars
+SELECT 
+(SELECT SUM(F.FilmBudgetDollars) AS StudioBudgetDollars
 FROM  Film F INNER JOIN Studio S ON F.StudioId = S.StudioId 
 WHERE S.StudioName = '20th Century Fox'
 GROUP BY F.StudioId, S.StudioName)
@@ -86,5 +86,3 @@ GROUP BY F.StudioId, S.StudioName)
 FROM  Film F INNER JOIN Studio S ON F.StudioId = S.StudioId 
 WHERE S.StudioName = 'Dreamworks'
 GROUP BY F.StudioId, S.StudioName) AS Difference
-
-

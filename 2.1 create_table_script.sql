@@ -1,4 +1,5 @@
-USE FilmStaging;
+
+USE FilmStaging
 
 CREATE TABLE Actor(
 	ActorId INT IDENTITY,
@@ -40,7 +41,7 @@ CREATE TABLE Film(
 	FilmId INT IDENTITY,
 	FilmName VARCHAR(250),
 	FilmSynopsis TEXT,
-	FilmRunTimeMinutes INT,
+	FilmRunTimeMinutes FLOAT,
 	FilmReleaseDate DATETIME,
 	FilmBudgetDollars FLOAT,
 	FilmBoxOfficeDollars FLOAT,

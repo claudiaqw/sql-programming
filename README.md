@@ -16,13 +16,17 @@ El modelo presentado cumple con las formas normales del modelo relacional, como 
 
 2. Para la creación de las tablas correspondientes al modelo presentado anteriormente se utilizó SQL Server como sistema de gestión de bases de datos (SGBD).
 
-* 2.1 Para la creación de las tablas se utilizó la sentencia:
+* 1. Para la creación de las tablas se utilizó la sentencia:
   
-  CREATE TABLE table_name
-  ( 
-     field_name data_type,
-     ...
-  )
+  ~~~ CREATE TABLE table_name
+        ( 
+           field_name data_type,
+           ...
+        )
+   ~~~   
+   Los tipos de cadacampo fieron decididos tras analizar el fichero de datos.
+   * 2. 
    
+
 
 

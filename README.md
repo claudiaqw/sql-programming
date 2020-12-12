@@ -37,6 +37,6 @@ Antes y después de cada sentencia **SELECT INSERT** han sido incluidas las sigu
 ~~~
    Para la población de las tablas fue necesario introducirlas pues las tablas fueron creadas especificando el atributo **IDENTITY** en las llaves primarias.
 
-4. 
+4. La explicación asociada a cada uno de los incisos de este ejercicio se encuentra en el script entregado.
 
 
